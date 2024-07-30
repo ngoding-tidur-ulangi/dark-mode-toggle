@@ -1,0 +1,379 @@
+:root {
+    --toggle-width: 600px; 
+    --toggle-height: 240px; 
+    --layer-size: calc(var(--toggle-width) / 5 *  6);
+    --indicator-size: calc(var(--layer-size) / 4);
+    --indicator-padding: calc((var(--toggle-height) - (var(--layer-size) / 4)) / 2);
+}
+
+body {
+    transition: 0.5s ease-in-out;
+}
+
+.container {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mode-button {
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    position: relative;
+    overflow: hidden;
+    border-radius:  calc(var(--toggle-height) / 2) calc(var(--toggle-height) / 2) calc(var(--toggle-height) / 2) calc(var(--toggle-height) / 2);
+    box-shadow: 5px 5px 15px 4px inset rgba(0,0,0,0.8), 2px 2px 4px 1px rgba(255,255,255), -2px -2px 4px 1px rgba(0,0,0,0.5);
+}
+
+.mode-button:hover .layer {
+    transform: scale(1.1);
+}
+
+.layer {
+    position: absolute;
+    z-index: 2;
+    top: -100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--layer-size);
+    height: var(--layer-size);
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.1);
+    transition: 0.5s ease-in;
+}
+
+.layer div {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--layer-size) / 4 * 3);
+    height: calc(var(--layer-size) / 4 * 3);
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.layer div div {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--layer-size) / 4 * 2);
+    height: calc(var(--layer-size) / 4 * 2);
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.3);
+}
+
+.indicator {
+    position: absolute;
+    z-index: 4;
+    top: calc((var(--toggle-height) - (var(--layer-size) / 4)) / 2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #facc15;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.3), -2px -2px 5px 0 inset rgba(0,0,0,0.5), 2px 2px 5px 0 inset rgba(255,255,255);
+    transition: 0.5s ease-in;
+    cursor: pointer;
+}
+
+.indicator > div {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.3), -2px -2px 5px 0 inset rgba(0,0,0,0.5), 2px 2px 5px 0 inset rgba(255,255,255);
+    transition: 0.5s;
+}
+
+.indicator div div:first-child {
+    position: absolute;
+    top: calc(var(--indicator-size) / 15);
+    width: calc(var(--indicator-size) / 15 * 4);
+    height: calc(var(--indicator-size) / 15 * 4);
+    border-radius: 50%;
+    background-color: #94a3b8;
+    box-shadow: 0 0 10px 0 inset rgba(0,0,0,0.3);
+}
+
+.indicator div div:nth-child(2) {
+    position: absolute;
+    top: calc(var(--indicator-size) / 15 * 7);
+    left: calc(var(--indicator-size) / 15 * 2);
+    width: calc(var(--indicator-size) / 15 * 6);
+    height: calc(var(--indicator-size) / 15 * 6);
+    border-radius: 50%;
+    background-color: #94a3b8;
+    box-shadow: 0 0 10px 0 inset rgba(0,0,0,0.3);
+}
+
+.indicator div div:last-child {
+    position: absolute;
+    top: calc(var(--indicator-size) / 15 * 8);
+    left: calc(var(--indicator-size) / 15 * 10);
+    width: calc(var(--indicator-size) / 15 * 3);
+    height: calc(var(--indicator-size) / 15 * 3);
+    border-radius: 50%;
+    background-color: #94a3b8;
+    box-shadow: 0 0 10px 0 inset rgba(0,0,0,0.3);
+}
+
+.cloud {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    transition: 0.5s;
+}
+
+.cloud div:first-child {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 10);
+    top: calc(-1 * var(--toggle-height) / 20 * 16);
+    width: calc(var(--toggle-height) / 20 * 16);
+    height: calc(var(--toggle-height) / 20 * 16);
+    border-radius: 50%;
+    background-color: white;
+}
+
+.cloud div:nth-child(2) {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 16);
+    top: calc(-1 * var(--toggle-height) / 20 * 8);
+    width: calc(var(--toggle-height) / 20 * 16);
+    height: calc(var(--toggle-height) / 20 * 16);
+    border-radius: 50%;
+    background-color: white;
+}
+
+.cloud div:nth-child(3) {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 24);
+    top: calc(-1 * var(--toggle-height) / 20 * 6);
+    width: calc(var(--toggle-height) / 20 * 12);
+    height: calc(var(--toggle-height) / 20 * 12);
+    border-radius: 50%;
+    background-color: white;
+}
+
+.cloud div:nth-child(4) {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 38);
+    top: calc(-1 * var(--toggle-height) / 20 * 3);
+    width: calc(var(--toggle-height) / 20 * 20);
+    height: calc(var(--toggle-height) / 20 * 20);
+    border-radius: 50%;
+    background-color: white;
+}
+
+.cloud div:last-child {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 45);
+    top: calc(-1 * var(--toggle-height) / 20 * 3);
+    width: calc(var(--toggle-height) / 20 * 15);
+    height: calc(var(--toggle-height) / 20 * 15);
+    border-radius: 50%;
+    background-color: white;
+}
+
+.cloud-background {
+    position: absolute;
+    z-index: 0;
+    right: 30px;
+    transition: 0.5s;
+}
+
+.cloud-background div:first-child {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 10);
+    top: calc(-1 * var(--toggle-height) / 20 * 16);
+    width: calc(var(--toggle-height) / 20 * 16);
+    height: calc(var(--toggle-height) / 20 * 16);
+    border-radius: 50%;
+    background-color: #bfdbfe;
+}
+
+.cloud-background div:nth-child(2) {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 16);
+    top: calc(-1 * var(--toggle-height) / 20 * 8);
+    width: calc(var(--toggle-height) / 20 * 16);
+    height: calc(var(--toggle-height) / 20 * 16);
+    border-radius: 50%;
+    background-color: #bfdbfe;
+}
+
+.cloud-background div:nth-child(3) {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 24);
+    top: calc(-1 * var(--toggle-height) / 20 * 6);
+    width: calc(var(--toggle-height) / 20 * 12);
+    height: calc(var(--toggle-height) / 20 * 12);
+    border-radius: 50%;
+    background-color: #bfdbfe;
+}
+
+.cloud-background div:nth-child(4) {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 38);
+    top: calc(-1 * var(--toggle-height) / 20 * 3);
+    width: calc(var(--toggle-height) / 20 * 20);
+    height: calc(var(--toggle-height) / 20 * 20);
+    border-radius: 50%;
+    background-color: #bfdbfe;
+}
+
+.cloud-background div:last-child {
+    position: absolute;
+    left: calc(-1 * var(--toggle-height) / 20 * 45);
+    top: calc(-1 * var(--toggle-height) / 20 * 3);
+    width: calc(var(--toggle-height) / 20 * 15);
+    height: calc(var(--toggle-height) / 20 * 15);
+    border-radius: 50%;
+    background-color: #bfdbfe;
+}
+
+.star {
+    position: absolute;
+    transition: 0.5s;
+}
+
+.star img {
+    position: absolute;
+}
+
+.star img:first-child {
+    left: calc(var(--toggle-height) / 20 * 20);
+    top: calc(var(--toggle-height) / 20 * 5);
+    width: calc(var(--toggle-height) / 20 * 5);
+}
+
+.star img:nth-child(2) {
+    left: calc(var(--toggle-height) / 20 * 20);
+    top: calc(var(--toggle-height) / 20 * 2);
+    width: calc(var(--toggle-height) / 20 * 3);
+}
+
+.star img:nth-child(3) {
+    left: calc(var(--toggle-height) / 20 * 24);
+    top: calc(var(--toggle-height) / 20 * 12);
+    width: calc(var(--toggle-height) / 20 * 2);
+}
+
+.star img:nth-child(4) {
+    left: calc(var(--toggle-height) / 20 * 18);
+    top: calc(var(--toggle-height) / 20 * 14);
+    width: calc(var(--toggle-height) / 20 * 2);
+}
+
+.star img:nth-child(5) {
+    left: calc(var(--toggle-height) / 20 * 8);
+    top: calc(var(--toggle-height) / 20 * 7);
+    width: calc(var(--toggle-height) / 20 * 2);
+}
+
+.star img:nth-child(6) {
+    left: calc(var(--toggle-height) / 20 * 12);
+    top: calc(var(--toggle-height) / 20 * 8);
+    width: calc(var(--toggle-height) / 20 * 4);
+}
+
+.star img:nth-child(7) {
+    left: calc(var(--toggle-height) / 20 * 4);
+    top: calc(var(--toggle-height) / 20 * 4);
+    width: calc(var(--toggle-height) / 20 * 2);
+}
+
+.star img:nth-child(8) {
+    left: calc(var(--toggle-height) / 20 * 10);
+    top: calc(var(--toggle-height) / 20 * 3);
+    width: calc(var(--toggle-height) / 20 * 3);
+}
+
+.star img:nth-child(9) {
+    left: calc(var(--toggle-height) / 20 * 5);
+    top: calc(var(--toggle-height) / 20 * 9);
+    width: calc(var(--toggle-height) / 20 * 3);
+}
+
+.star img:last-child {
+    left: calc(var(--toggle-height) / 20 * 10);
+    top: calc(var(--toggle-height) / 20 * 13);
+    width: calc(var(--toggle-height) / 20 * 4);
+}
+
+.light .indicator {
+    left: var(--indicator-padding);
+}
+
+.dark .indicator {
+    left: calc(var(--toggle-width) - var(--indicator-padding) - var(--indicator-size));
+}
+
+.light .indicator > div {
+    left: 120%;
+}
+
+.dark .indicator > div {
+    left: 0;
+}
+
+.light .layer {
+    left: -40%;
+}
+
+.dark .layer {
+    left: 20%;
+}
+
+.light .cloud {
+    bottom: 0;
+}
+
+.dark .cloud {
+    bottom: -100%;
+}
+
+.light .cloud-background {
+    bottom: 14%;
+}
+
+.dark .cloud-background {
+    bottom: -100%;
+}
+
+.light .mode-button {
+    background-color: #3b82f6;
+}
+
+.dark .mode-button {
+    background-color: #1e293b;
+}
+
+.light {
+    background-color: #f8fafc;
+}
+
+.dark {
+    background-color: #1e293b;
+}
+
+.light .star {
+    top: -100%;
+}
+
+.dark .star {
+    top: 0;
+}
